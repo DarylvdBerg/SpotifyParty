@@ -14,6 +14,10 @@ class PlayListOverview extends React.Component {
     }
 
     componentDidMount() {
+        this.getPlayList();
+    }
+
+    getPlayList() {
         fetch("http://localhost:3001/playlist")
         .then(res => res.json())
         .then(res => {
@@ -23,6 +27,7 @@ class PlayListOverview extends React.Component {
             })
         })
     }
+
 
     render() {
         const {isLoaded, playList} = this.state;

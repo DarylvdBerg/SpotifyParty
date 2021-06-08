@@ -21,10 +21,6 @@ export default function SearchTrack() {
         return () => clearTimeout(timer)
       }, [search])
 
-    function addTrackToPlayList(track) {
-        console.log(track);
-    }
-
     return(
         <div className="search-box">
             <div>

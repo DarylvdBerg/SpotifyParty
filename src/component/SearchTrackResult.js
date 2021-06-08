@@ -3,7 +3,7 @@ import "../style/SearchTrack.scss";
 export default function SearchTrackResult({track}) {
 
     function addTrackToPlayList() {
-        
+        // TODO: add track to playlist, also check if track already exists.
     }
 
     return(
