@@ -1,12 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const SpotifyWebApi = require('spotify-web-api-node');
 const cors = require('cors');
 const app = express();
 app.use(cors());
 
-var clientId = "b381cea0329f438bb48748b68eab820a";
-var clientSecret = "9a75a7ba93f247bc8822c80642c48317";
-var playlistId = "4ElSuytngDHoYR5gM2Z1zx";
+var clientId = process.env.SPOTIFY_CLIENT_ID;
+var clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+var playlistId = process.env.SPOTIFY_PLAYLIST_ID;
 
 var spotifyApi = new SpotifyWebApi({
     clientId: clientId,
@@ -16,6 +17,7 @@ var spotifyApi = new SpotifyWebApi({
 spotifyApi.clientCredentialsGrant().then(function(data) {
     spotifyApi.setAccessToken(data.body['access_token'])
 }, function(error) {
+    console.log(error);
     console.log("error retrieving the code");
 });
 
