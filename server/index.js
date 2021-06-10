@@ -33,6 +33,10 @@ app.get('/tracks/:searchTerm', function(req, res) {
     .then(function(data){
         res.send(data.body);
     });
-})
+});
+
+app.post('/track', function(req, res){
+    console.log(req.body);
+});
 
 app.listen(3001);
