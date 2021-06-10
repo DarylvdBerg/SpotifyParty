@@ -18,7 +18,7 @@ class PlayListOverview extends React.Component {
     }
 
     getPlayList() {
-        fetch("http://localhost:3001/playlist")
+        fetch(process.env.REACT_APP_BASE_URL+"playlist")
         .then(res => res.json())
         .then(res => {
             this.setState({
