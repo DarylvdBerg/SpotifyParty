@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import "../style/PlaylistOverview.scss";
 import Track from "../component/Track";
 import SearchTrack from "../component/SearchTrack";
@@ -8,13 +9,24 @@ class PlayListOverview extends React.Component {
         super();
         this.state = {
             isLoaded: false,
-            playList: null,
-            tracks: []
+            playList: null
         };
     }
 
     componentDidMount() {
         this.getPlayList();
+        this.loginToSpotify(this.props.code);
+    }
+
+    loginToSpotify(code) {
+        axios.post(process.env.REACT_APP_BASE_URL+"login", {code})
+        .then(res => {
+            console.log("executed");
+            window.history.pushState({}, "", "/")
+        })
+        .catch(() => {
+            window.location = "/";
+        })
     }
 
     getPlayList() {
