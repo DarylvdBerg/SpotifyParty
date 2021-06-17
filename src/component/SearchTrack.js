@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import "../style/SearchTrack.scss";
 import SearchTrackResult from "../component/SearchTrackResult";
 
-export default function SearchTrack() {
+export default function SearchTrack({addTrack}) {
     let [search, setSearch] = useState("");
     let [trackList, setTracks] = useState([]);
     
@@ -31,7 +31,7 @@ export default function SearchTrack() {
             </div>
             <div className="search-results">
                 {trackList.map((track, index) => (
-                    <SearchTrackResult key={index} track={track}/>
+                    <SearchTrackResult key={index} track={track} addTrack={addTrack}/>
                 ))}
             </div>
         </div>

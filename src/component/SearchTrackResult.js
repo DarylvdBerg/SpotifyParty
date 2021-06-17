@@ -1,7 +1,7 @@
 import axios from "axios";
 import "../style/SearchTrack.scss";
 
-export default function SearchTrackResult({track}) {
+export default function SearchTrackResult({track, addTrack}) {
     const trackPrefix = "spotify:track:";
     function addTrackToPlayList() {
         const content = {
@@ -11,7 +11,7 @@ export default function SearchTrackResult({track}) {
         
         axios.post(process.env.REACT_APP_BASE_URL+"track", content)
             .then(response => {
-                console.log(response);
+                addTrack(track);
             });
     }
 

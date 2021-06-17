@@ -4,13 +4,16 @@ import "../style/PlaylistOverview.scss";
 import Track from "../component/Track";
 import SearchTrack from "../component/SearchTrack";
 
+let tracks = [];
 class PlayListOverview extends React.Component {
     constructor(props) {
         super();
         this.state = {
             isLoaded: false,
-            playList: null
+            playList: null,
+            tracks: []
         };
+        this.addTrackToPlaylist = this.addTrackToPlaylist.bind(this);
     }
 
     componentDidMount() {
@@ -36,23 +39,27 @@ class PlayListOverview extends React.Component {
             this.setState({
                 isLoaded: true,
                 playList: res,
+                tracks: res.tracks.items
             })
         })
     }
 
+    addTrackToPlaylist(track) {
+        this.setState({
+            tracks: this.state.tracks.arr.push(track)
+        })
+    }
 
     render() {
-        const {isLoaded, playList} = this.state;
+        const {isLoaded, playList, tracks} = this.state;
         if(!isLoaded){
             return (<p>Is loading...</p>)
         }
         else{
-            let tracks = playList.tracks.items;
             return (
                 <div className="container">
                     <h1>{playList.name}</h1>
-                
-                    <SearchTrack/>
+                    <SearchTrack addTrack={() => this.addTrackToPlaylist}/>
                     <div className="track-list"> 
                         {tracks.map((track, index) => (
                             <Track key={index} track={track}/>
